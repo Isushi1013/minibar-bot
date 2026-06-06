@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  minibar-bot:
+    build: .
+    container_name: minibar-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - bot_data:/app/data
+    # Бот работает через long-polling, открытых портов не нужно
+
+volumes:
+  bot_data:
+    driver: local
