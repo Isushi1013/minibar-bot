@@ -17,6 +17,7 @@ SIMPLE_ITEMS: list[Item] = [
     Item("sprite", "Спрайт"),
     Item("juice", "Сок"),
     Item("tonic", "Тоник"),
+    Item("dnd", "DnD"),
     Item("water", "Вода"),
     Item("slivki", "Сливки"),
 ]
@@ -43,19 +44,9 @@ ALL_ITEMS: dict[str, str] = {i.key: i.label for i in ALL_ITEMS_LIST}
 TEA_KEYS = {i.key for i in TEA_ITEMS}
 COFFEE_KEYS = {i.key for i in COFFEE_ITEMS}
 
-LIMITS: dict[str, int] = {
-    "tea": 2,
-    "coffee": 3,
-}
-
-
 def category_total(counts: dict[str, int], keys: set[str]) -> int:
     return sum(counts.get(k, 0) for k in keys)
 
 
 def category_limit(keys: set[str]) -> int | None:
-    if keys <= TEA_KEYS:
-        return LIMITS["tea"]
-    if keys <= COFFEE_KEYS:
-        return LIMITS["coffee"]
     return None
